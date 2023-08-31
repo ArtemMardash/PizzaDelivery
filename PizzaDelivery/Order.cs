@@ -6,19 +6,28 @@ using System.Threading.Tasks;
 
 namespace PizzaDelivery
 {
+    /// <summary>
+    /// Class which create an order
+    /// </summary>
     internal class Order
     {
+        /// <summary>
+        /// id of order
+        /// </summary>
         public Guid OrderId { get; set; }
 
+        /// <summary>
+        /// Description of order
+        /// </summary>
         public string Description { get; set; }
 
-        public string Status { get; set; }
-
+        /// <summary>
+        /// constructors of Order
+        /// </summary>
         public Order(string description, string status)
         {
             OrderId = Guid.NewGuid();
             Description = description;
-            Status = status;
         }
 
         public Order() 
@@ -30,7 +39,6 @@ namespace PizzaDelivery
         {
             OrderId = orderId;
             Description = description;
-            Status = status;
         }
     }
 }

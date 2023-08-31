@@ -9,8 +9,14 @@ using Newtonsoft.Json.Converters;
 
 namespace PizzaDelivery
 {
+    /// <summary>
+    /// Work with json
+    /// </summary>
     internal class JsonUtils
     {
+        /// <summary>
+        /// Setting to serialize to json
+        /// </summary>
         public static readonly JsonSerializerSettings JsonSeetings = new()
         {
             Formatting = Formatting.Indented,
@@ -25,24 +31,36 @@ namespace PizzaDelivery
             }
         };
 
+        /// <summary>
+        /// Person to json
+        /// </summary>
         public static string ToJson(Person person)
         {
             var json = JsonConvert.SerializeObject(person, JsonSeetings);
             return json;
         }
 
+        /// <summary>
+        /// Client to json
+        /// </summary>
         public static string ToJson(Client client)
         {
             var json = JsonConvert.SerializeObject(client, JsonSeetings);
             return json;
         }
 
+        /// <summary>
+        /// DeliveryMan to json
+        /// </summary>
         public static string ToJson(DeliveryMan deliveryMan)
         {
             var json = JsonConvert.SerializeObject(deliveryMan, JsonSeetings);
             return json;
         }
 
+        /// <summary>
+        /// Order to json
+        /// </summary>
         public static string ToJson(Order order)
         {
             var json = JsonConvert.SerializeObject(order, JsonSeetings);

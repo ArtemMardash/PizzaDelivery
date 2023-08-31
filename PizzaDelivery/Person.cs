@@ -6,20 +6,34 @@ using System.Threading.Tasks;
 
 namespace PizzaDelivery
 {
+    /// <summary>
+    /// Class of person who is client and DeliveryMan
+    /// </summary>
     internal class Person
     {
+        /// <summary>
+        /// Name of persom
+        /// </summary>
         public string Name { get; set; }
 
+        /// <summary>
+        /// Last name of person
+        /// </summary>
         public string LastName { get; set; }
 
+        /// <summary>
+        /// id of person
+        /// </summary>
         public Guid Id { get; set; }    
 
+        /// <summary>
+        /// date of birth of person
+        /// </summary>
         public DateTime BirthDate { get; set; }
 
-        public Person()
-        {
-
-        }
+        /// <summary>
+        /// constructors of Person
+        /// </summary>
 
         public Person(string name, string lastName, Guid id, DateTime birthDate)
         {
@@ -35,6 +49,10 @@ namespace PizzaDelivery
             Name = name;
             LastName = lastName;
             BirthDate = birthDate;
+        }
+        public Person()
+        {
+
         }
     }
 }
