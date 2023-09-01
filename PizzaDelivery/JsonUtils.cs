@@ -66,5 +66,34 @@ namespace PizzaDelivery
             var json = JsonConvert.SerializeObject(order, JsonSeetings);
             return json;
         }
+
+        public static void SaveToJson(List <DeliveryMan> deliveryMen)
+        {
+            var clients = deliveryMen.SelectMany(c => c.Clients);
+            var orders = deliveryMen.SelectMany(o => o.Orders);
+            var persons = deliveryMen.SelectMany(p => p.Persons).ToList();
+
+            File.WriteAllText("persons.json", JsonConvert.SerializeObject(persons, JsonSeetings));
+            File.WriteAllText("orders.json", JsonConvert.SerializeObject(orders, JsonSeetings));
+            File.WriteAllText("clients.json", JsonConvert.SerializeObject(clients, JsonSeetings));
+            File.WriteAllText("deliveryMen", JsonConvert.SerializeObject(deliveryMen, JsonSeetings));
+        }
+
+        public static List<DeliveryMan> LoadFromJson(string fileName)
+        {
+            var jsonFromFille = File.ReadAllText(fileName);
+            var deliveryMen = JsonConvert.DeserializeObject<List<DeliveryMan>>(jsonFromFille, JsonSeetings);
+
+            var ordersFromFile = File.ReadAllText("orders.json");
+            var orders =  JsonConvert.DeserializeObject <List<Order>>(ordersFromFile, JsonSeetings);
+
+            var clientsFromFile = File.ReadAllText("clients.json");
+            var clients = JsonConvert.DeserializeObject <List<Client>>(clientsFromFile, JsonSeetings);
+
+            var personsFromFile = File.ReadAllText("persons.json");
+            var persons =  JsonConvert.DeserializeObject<List<Person>>(personsFromFile, JsonSeetings);
+
+            return deliveryMen;
+        }
     }
 }
