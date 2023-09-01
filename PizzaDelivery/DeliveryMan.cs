@@ -45,12 +45,12 @@ namespace PizzaDelivery
         public List <Guid> ClientsId { get => _clientId; set => _clientId = value; }
 
         /// <summary>
-        /// List where employee can find data about order
+        /// List where data about orders
         /// </summary>
         public List<Order> Orders { get; set; } = new List<Order>();
 
         /// <summary>
-        /// List where employee can find data about client
+        /// List 
         /// </summary>
         public List<Client> Clients { get; set; } = new List<Client>();
         

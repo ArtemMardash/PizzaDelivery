@@ -71,12 +71,12 @@ namespace PizzaDelivery
         {
             var clients = deliveryMen.SelectMany(c => c.Clients);
             var orders = deliveryMen.SelectMany(o => o.Orders);
-            var persons = deliveryMen.SelectMany(p => p.Persons).ToList();
+            var persons = deliveryMen.SelectMany(p => p.Persons);
 
             File.WriteAllText("persons.json", JsonConvert.SerializeObject(persons, JsonSeetings));
             File.WriteAllText("orders.json", JsonConvert.SerializeObject(orders, JsonSeetings));
             File.WriteAllText("clients.json", JsonConvert.SerializeObject(clients, JsonSeetings));
-            File.WriteAllText("deliveryMen", JsonConvert.SerializeObject(deliveryMen, JsonSeetings));
+            File.WriteAllText("deliveryMen.json", JsonConvert.SerializeObject(deliveryMen, JsonSeetings));
         }
 
         public static List<DeliveryMan> LoadFromJson(string fileName)

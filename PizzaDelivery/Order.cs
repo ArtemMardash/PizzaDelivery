@@ -24,7 +24,7 @@ namespace PizzaDelivery
         /// <summary>
         /// constructors of Order
         /// </summary>
-        public Order(string description, string status)
+        public Order(string description)
         {
             OrderId = Guid.NewGuid();
             Description = description;
@@ -35,7 +35,7 @@ namespace PizzaDelivery
 
         }
 
-        public Order(Guid orderId, string description, string status)
+        public Order(Guid orderId, string description)
         {
             OrderId = orderId;
             Description = description;

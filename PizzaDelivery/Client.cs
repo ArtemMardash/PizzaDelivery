@@ -24,7 +24,7 @@ namespace PizzaDelivery
         /// <summary>
         /// Person data of client
         /// </summary>
-        public List <Person> Persons { get; set; } = new List<Person>();
+        public Person Persons { get; set; }
 
         /// <summary>
         /// Address of client
@@ -43,7 +43,7 @@ namespace PizzaDelivery
 
         }
 
-        public Client ( Guid clientId, List<Person> persons, Order myOrder, string address)
+        public Client ( Guid clientId, Person persons, Order myOrder, string address)
         {
             ClientId = clientId;
             Persons = persons;
@@ -52,7 +52,7 @@ namespace PizzaDelivery
             Address = address;
         }
 
-        public Client( List<Person> persons, Order myOrder, string address)
+        public Client( Person persons, Order myOrder, string address)
         {
             ClientId = Guid.NewGuid();
             Persons = persons;
