@@ -30,53 +30,53 @@ namespace PizzaDelivery
         /// <summary>
         /// Person data of employee
         /// </summary>
-        public List <Person> Persons {  get; set; } = new List<Person>();
+        public Person Persons { get; set; }
 
         /// <summary>
         /// List of orders id which employee need to delivery
         /// </summary>
-        [JsonIgnore]
-        public List <Guid> OrdersId { get => _ordersId; set => _ordersId = value; }
+        public List<Guid> OrdersId { get => _ordersId; set => _ordersId = value; }
 
         /// <summary>
         /// List of clients id whom employee need to delivery an order
         /// </summary>
-        [JsonIgnore]
-        public List <Guid> ClientsId { get => _clientId; set => _clientId = value; }
+        public List<Guid> ClientsId { get => _clientId; set => _clientId = value; }
 
         /// <summary>
         /// List where data about orders
         /// </summary>
+        [JsonIgnore]
         public List<Order> Orders { get; set; } = new List<Order>();
 
         /// <summary>
         /// List 
         /// </summary>
+        [JsonIgnore]
         public List<Client> Clients { get; set; } = new List<Client>();
-        
+
         /// <summary>
         /// Constructors of DeliveryMan 
         /// </summary>
-        public DeliveryMan(Guid workerId, List <Order> orders, List <Person> persons, List <Client> clients)
+        public DeliveryMan(Guid workerId, List<Order> orders, Person persons, List<Client> clients)
         {
             WorkerId = workerId;
             Orders = orders;
             Persons = persons;
             Clients = clients;
-            _ordersId.AddRange(orders.Select(o => o.OrderId));
-            _clientId.AddRange(clients.Select(c => c.ClientId));
+            OrdersId.AddRange(orders.Select(o => o.OrderId));
+            ClientsId.AddRange(clients.Select(c => c.ClientId));
         }
-        public DeliveryMan(List<Order> orders, List <Person> persons, List<Client> clients)
+        public DeliveryMan(List<Order> orders, Person persons, List<Client> clients)
         {
-            WorkerId = Guid.NewGuid();  
+            WorkerId = Guid.NewGuid();
             Orders = orders;
             Persons = persons;
-            _ordersId.AddRange(orders.Select(o => o.OrderId));
+            OrdersId.AddRange(orders.Select(o => o.OrderId));
             Clients = clients;
-            _clientId.AddRange(clients.Select(c=>c.ClientId));
+            ClientsId.AddRange(clients.Select(c => c.ClientId));
         }
 
-        public DeliveryMan() 
+        public DeliveryMan()
         {
 
         }

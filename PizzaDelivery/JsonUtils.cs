@@ -71,7 +71,8 @@ namespace PizzaDelivery
         {
             var clients = deliveryMen.SelectMany(c => c.Clients);
             var orders = deliveryMen.SelectMany(o => o.Orders);
-            var persons = deliveryMen.SelectMany(p => p.Persons);
+            var persons = clients.Select(p => p.Persons);
+            persons = deliveryMen.Select(p => p.Persons);
 
             File.WriteAllText("persons.json", JsonConvert.SerializeObject(persons, JsonSeetings));
             File.WriteAllText("orders.json", JsonConvert.SerializeObject(orders, JsonSeetings));
