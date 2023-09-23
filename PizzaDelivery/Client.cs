@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace PizzaDelivery
 {
@@ -14,7 +16,7 @@ namespace PizzaDelivery
         /// <summary>
         /// id of order that he did
         /// </summary>
-        private Guid _orderId { get; set; }
+        public Guid OrderId { get; set; }
 
         /// <summary> 
         /// id of client
@@ -34,6 +36,7 @@ namespace PizzaDelivery
         /// <summary>
         /// Order that client did
         /// </summary>
+        [JsonIgnore]
         public Order MyOrder { get; set; }
         /// <summary>
         /// client constructor
@@ -48,7 +51,7 @@ namespace PizzaDelivery
             ClientId = clientId;
             Persons = persons;
             MyOrder = myOrder;
-            _orderId = myOrder.OrderId;
+            OrderId = myOrder.OrderId;
             Address = address;
         }
 
@@ -57,7 +60,7 @@ namespace PizzaDelivery
             ClientId = Guid.NewGuid();
             Persons = persons;
             MyOrder = myOrder;
-            _orderId = myOrder.OrderId;
+            OrderId = myOrder.OrderId;
             Address = address;
         }
     }

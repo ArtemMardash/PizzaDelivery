@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-
+using System.Text.Json.Serialization;
 
 namespace PizzaDelivery
 {
@@ -28,7 +28,8 @@ namespace PizzaDelivery
                 {
                     DateTimeStyles = System.Globalization.DateTimeStyles.AssumeUniversal
                 }
-            }
+            },
+            
         };
 
         /// <summary>
@@ -67,34 +68,52 @@ namespace PizzaDelivery
             return json;
         }
 
-        public static void SaveToJson(List <DeliveryMan> deliveryMen)
+        public static void SaveToJsonDeliveryMan(List <DeliveryMan> deliveryMen)
         {
-            var clients = deliveryMen.SelectMany(c => c.Clients);
-            var orders = deliveryMen.SelectMany(o => o.Orders);
-            var persons = clients.Select(p => p.Persons);
-            persons = deliveryMen.Select(p => p.Persons);
-
-            File.WriteAllText("persons.json", JsonConvert.SerializeObject(persons, JsonSeetings));
-            File.WriteAllText("orders.json", JsonConvert.SerializeObject(orders, JsonSeetings));
-            File.WriteAllText("clients.json", JsonConvert.SerializeObject(clients, JsonSeetings));
             File.WriteAllText("deliveryMen.json", JsonConvert.SerializeObject(deliveryMen, JsonSeetings));
+        }
+
+        public static void SaveToJsonClient(List <Client> clients)
+        {
+            File.WriteAllText("clients.json", JsonConvert.SerializeObject(clients, JsonSeetings));
+        }
+
+        public static void SaveToJsonOrder(List <Order> orders)
+        {
+            File.WriteAllText("orders.json", JsonConvert.SerializeObject(orders, JsonSeetings));
+        }
+
+        public static void SaveToJsonPerson(List <Person> persons)
+        {
+            File.WriteAllText("persons.json", JsonConvert.SerializeObject(persons, JsonSeetings));
         }
 
         public static List<DeliveryMan> LoadFromJson(string fileName)
         {
             var jsonFromFille = File.ReadAllText(fileName);
             var deliveryMen = JsonConvert.DeserializeObject<List<DeliveryMan>>(jsonFromFille, JsonSeetings);
-
-            var ordersFromFile = File.ReadAllText("orders.json");
-            var orders =  JsonConvert.DeserializeObject <List<Order>>(ordersFromFile, JsonSeetings);
-
-            var clientsFromFile = File.ReadAllText("clients.json");
-            var clients = JsonConvert.DeserializeObject <List<Client>>(clientsFromFile, JsonSeetings);
-
-            var personsFromFile = File.ReadAllText("persons.json");
-            var persons =  JsonConvert.DeserializeObject<List<Person>>(personsFromFile, JsonSeetings);
-
             return deliveryMen;
+        }
+
+        public static List<Client> LoadFromJsonClient(string fileName)
+        {
+            var clientsFromFile = File.ReadAllText("clients.json");
+            var clients = JsonConvert.DeserializeObject<List<Client>>(clientsFromFile, JsonSeetings);
+            return clients;
+        }
+
+        public static List<Order> LoadFromJsonOrder(string fileName)
+        {
+            var ordersFromFile = File.ReadAllText("orders.json");
+            var orders =  JsonConvert.DeserializeObject<List<Order>>(ordersFromFile, JsonSeetings);
+            return orders;
+        }
+
+        public static List<Person> LoadFromJsonPerson(string filename)
+        {
+            var personsFromFile = File.ReadAllText("persons.json");
+            var persons = JsonConvert.DeserializeObject<List<Person>>(personsFromFile, JsonSeetings);
+            return persons;
         }
     }
 }

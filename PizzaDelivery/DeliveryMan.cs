@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using System.Text.Json;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace PizzaDelivery
 {
@@ -33,6 +35,13 @@ namespace PizzaDelivery
         public Person Persons { get; set; }
 
         /// <summary>
+        /// List where data about orders
+        /// </summary>
+        [JsonIgnore]
+
+        public List<Order> Orders { get; set; }
+
+        /// <summary>
         /// List of orders id which employee need to delivery
         /// </summary>
         public List<Guid> OrdersId { get => _ordersId; set => _ordersId = value; }
@@ -42,17 +51,12 @@ namespace PizzaDelivery
         /// </summary>
         public List<Guid> ClientsId { get => _clientId; set => _clientId = value; }
 
-        /// <summary>
-        /// List where data about orders
-        /// </summary>
-        [JsonIgnore]
-        public List<Order> Orders { get; set; } = new List<Order>();
 
         /// <summary>
-        /// List 
+        /// List where data about clients
         /// </summary>
         [JsonIgnore]
-        public List<Client> Clients { get; set; } = new List<Client>();
+        public List<Client> Clients { get; set; }
 
         /// <summary>
         /// Constructors of DeliveryMan 
